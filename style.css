@@ -83,3 +83,15 @@ footer {
     border: 1rem solid red;
     */
 }
+
+.hiddenTitle {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    left: -10000px;
+}
+.active {
+    text-decoration: underline;
+    text-decoration-color: white;
+}

@@ -1,26 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head> <!-- landing page --> 
-<body>
+<html lang="nl-BE">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/views/style.css" />
+    
+
+    <script defer src="./js/model.js"></script>
+    <title>Projecten</title>
+  </head>
+  <body id="home">
     <header>
-        <nav class="navigation">
-            <h2 class="hiddenTitle">Navigatie</h2>
-            <ul>
-        
-                <li><a class="active" href="index.html">Landing</a></li>
-                <li><a class="active" href="Homepage.html">HomePage</a></li>
-                <li><a class="active" href="bekijken.html">Bekijken</a></li>
-                <li><a class="active" href="blacklist.html">Blacklisted</a></li>
-                
-        
-            </ul>
-        </nav>
+      <h1 class="titel">Kies een project</h1>
     </header>
-</body>
+    <hr />
+    <main>
+      <a href="#">
+        <h2><a class="active" href="Homepage.html">Lego Master</a>
+        <img src="assets/images/Logo_Lego.png" alt="Lego Masters" href="Homepage.html" />
+      </a>
+      <button id="myBtn" class="nbb">
+        <h2>Nationale Bank</h2>
+        <img src="assets/images/nationalebank.png" alt="Nationale Bank" />
+      </button>
+      <button id="myBtn2" class="magic">
+        <h2>Magic The Gathering</h2>
+        <img src="assets/images/magic.jpg" alt="Magic The Gathering" />
+      </button>
+      <button id="myBtn3" class="theone">
+        <h2>The One</h2>
+        <img src="assets/images/lordoftherings.jpg" alt="The One" />
+      </button>
+      <button id="myBtn4" class="fort">
+        <h2>Fortnite</h2>
+        <img src="assets/images/fortnite.jpg" alt="Fortnite" />
+      </button>
+      <button id="myBtn5" class="Fifa">
+        <h2>Fifa</h2>
+        <img src="assets/images/fifa.png" alt="Fifa" />
+      </button>
+      <button id="myBtn6" class="pokemon">
+        <h2>Pokemon</h2>
+        <img src="assets/images/Pokemon-Logo.png" alt="Pokemon" />
+      </button>
+      <!-- Start w3schools code -->
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h1>Je kan niet meer aan dit project meewerken</h1>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <p>&copy; Lego Team</p>
+    </footer>
+  </body>
 </html>
