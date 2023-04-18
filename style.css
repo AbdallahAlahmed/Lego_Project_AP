@@ -1,0 +1,97 @@
+body {
+    max-width: 75%;
+    margin: auto;
+    display: grid;
+    grid-template-areas:
+        'header'
+        'main'
+        'footer' ;
+    background-color: black;
+    color: yellow;
+    font-family: Google Noto;
+    ;
+}
+
+/* header*/
+header {
+    grid-area: header;
+}
+
+header {
+    background-color: black;
+    color: yellow;
+    align-self: auto;
+
+    border-style: ridge;
+    border-color: red;
+}
+
+/* main */
+
+main {
+    grid-area: main;
+}
+main {
+    background-color: black;
+    color: yellow;
+    align-self: auto;
+
+    border-style: ridge;
+    border-color: red;
+}
+
+/* footer */
+
+footer {
+    grid-area: footer;
+}
+
+footer {
+    background-color: black;
+    color: yellow;
+    text-align: right;
+
+}
+
+/* nav */
+
+.navi {
+    display: flex;
+    
+}
+
+/* bekijk */
+
+#bekijk table {
+
+    margin: auto;
+}
+
+#bekijk td {
+    border: red;
+    padding: 2rem;
+}
+
+#bekijk th{
+    color: yellow;
+    padding: 2rem;
+    font-size: 2rem;
+    text-transform: uppercase;    
+
+    /* border */
+    /*
+    border: 1rem solid red;
+    */
+}
+
+.hiddenTitle {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    left: -10000px;
+}
+.active {
+    text-decoration: underline;
+    text-decoration-color: white;
+}
