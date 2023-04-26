@@ -1,0 +1,214 @@
+body {
+    max-width: 75%;
+    margin: auto;
+    display: grid;
+    grid-template-areas:
+        'header'
+        'main'
+        'footer' ;
+    background-color: black;
+    color: yellow;
+    font-family: Google Noto;
+    padding-top: 1rem;
+    text-align: center;
+}
+
+/* header*/
+header {
+    grid-area: header;
+}
+
+header {
+    background-color: black;
+    color: yellow;
+    align-self: auto;
+
+    border-style: ridge;
+    border-color: red;
+}
+
+header h1 {
+    color: red;
+}
+/* main */
+
+main {
+    grid-area: main;
+}
+
+main {
+    background-color: black;
+    color: yellow;
+    align-self: auto;
+
+    border-style: ridge;
+    border-color: red;
+
+    padding: 1rem;
+}
+
+
+
+/* footer */
+
+footer {
+    grid-area: footer;
+}
+
+footer {
+    background-color: black;
+    color: yellow;
+    text-align: right;
+
+}
+
+/* nav */
+
+.navi {
+    display: flex;
+}
+
+.navi a{
+    float: left;
+    font-size: 20px;
+    color: yellow;
+    padding: 1rem 1rem;
+    align-self: center;
+}
+.navi a:hover {
+    background: red;
+}
+
+
+/* flex index */
+
+.flex-index-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+
+/* bekijk */
+
+bekijk table {
+    margin: auto;
+    max-width: 50%;
+}
+
+/* model pop up  */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #myBtn{
+      border-width: 0px;
+  }
+
+  #myBtn:hover{
+      cursor: pointer;
+  }
+  
+
+  #myBtn2{
+      border-width: 0px;
+  }
+
+  #myBtn2:hover{
+      cursor: pointer;
+  }
+  
+
+  #myBtn3{
+      border-width: 0px;
+  }
+
+  #myBtn3:hover{
+      cursor: pointer;
+  }
+
+  #myBtn4{
+      border-width: 0px;
+  }
+
+  #myBtn4:hover{
+      cursor: pointer;
+  }
+
+  #myBtn5{
+      border-width: 0px;
+  }
+
+  #myBtn5:hover{
+      cursor: pointer;
+  }
+  #myBtn6{
+    border-width: 0px;
+}
+  #myBtn6:hover{
+    cursor: pointer;
+}
+  .modal-content h1{
+      text-align: center;
+  }
+  
+
+/* bekijk */
+
+#bekijk table {
+
+    margin: auto;
+}
+
+#bekijk td {
+    border: red;
+    padding: 2rem;
+}
+
+#bekijk th{
+    color: yellow;
+    padding: 2rem;
+    font-size: 2rem;
+    text-transform: uppercase;    
+
+    /* border */
+    /*
+    border: 1rem solid red;
+    */
+}
+
