@@ -1,0 +1,22 @@
+/* Reset all styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Remove list styles */
+  ul, ol {
+    list-style: none;
+  }
+  
+  /* Remove text decoration */
+  a {
+    text-decoration: none;
+  }
+  
+  /* Remove default outline */
+  :focus {
+    outline: none;
+  }
+  
