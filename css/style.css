@@ -11,6 +11,7 @@ body {
         'main'
         'footer'
     ;
+    background-color: lightgrey;
 }
 
 /* header*/
@@ -50,9 +51,9 @@ main {
     overflow: auto;
     flex-wrap: wrap;
     gap: 20px;
-
     padding: 20px;
     border-radius: 10px;
+    
 }
 
 
@@ -205,25 +206,22 @@ button{
 /* bekijk */
 
 #bekijk table {
-
     margin: auto;
 }
 
 #bekijk td {
-    border: red;
+    border:black solid;
+    
     padding: 2rem;
 }
 
 #bekijk th {
-    color: yellow;
+    border:black solid;
+    color: #fff;
     padding: 2rem;
     font-size: 2rem;
     text-transform: uppercase;
 
-    /* border */
-    /*
-    border: 1rem solid red;
-    */
 }
 
 .hiddenTitle {
