@@ -1,14 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*body*/
 body {
-    max-width: 75%;
-    margin: auto;
-    display: grid;
     grid-template-areas:
         'header'
         'main'
-        'footer' ;
-    background-color: black;
-    color: yellow;
-    font-family: Google Noto;
+        'footer'
     ;
 }
 
@@ -17,47 +18,109 @@ header {
     grid-area: header;
 }
 
-header {
-    background-color: black;
-    color: yellow;
-    align-self: auto;
+.logo {
+    font-size: 2em;
+    color: #fff;
+    user-select: none;
+}
 
-    border-style: ridge;
-    border-color: red;
+header {
+    grid-area: header;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: red;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
 }
 
 /* main */
 
 main {
     grid-area: main;
-}
-main {
-    background-color: black;
-    color: yellow;
-    align-self: auto;
+    margin: auto;
+    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    overflow: auto;
+    flex-wrap: wrap;
+    gap: 20px;
 
-    border-style: ridge;
-    border-color: red;
+    padding: 20px;
+    border-radius: 10px;
 }
+
 
 /* footer */
 
 footer {
     grid-area: footer;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 29.5rem;
+    padding-top: 5rem;
+    
+    background-color: red;
 }
 
-footer {
-    background-color: black;
-    color: yellow;
-    text-align: right;
-
-}
 
 /* nav */
 
 .navi {
     display: flex;
-    
+
+}
+
+.navigation a {
+    position: relative;
+    font-size: 1.1em;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+}
+
+.navigation a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+
+.navigation a:hover:after {
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
+.navigation .btnLogin-popup {
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #fff;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: .5s;
+}
+
+.navigation .btnLogin-popup:hover {
+    background: #fff;
+    color: #162938;
 }
 
 /* bekijk */
@@ -72,11 +135,11 @@ footer {
     padding: 2rem;
 }
 
-#bekijk th{
+#bekijk th {
     color: yellow;
     padding: 2rem;
     font-size: 2rem;
-    text-transform: uppercase;    
+    text-transform: uppercase;
 
     /* border */
     /*
@@ -91,6 +154,7 @@ footer {
     overflow: hidden;
     left: -10000px;
 }
+
 .active {
     text-decoration: underline;
     text-decoration-color: white;
