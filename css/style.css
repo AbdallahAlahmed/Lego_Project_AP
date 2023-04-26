@@ -201,7 +201,96 @@ button{
     border-radius: 10px;
 }
 
+/* model pop up  */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
 
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #myBtn{
+      border-width: 0px;
+  }
+
+  #myBtn:hover{
+      cursor: pointer;
+  }
+  
+
+  #myBtn2{
+      border-width: 0px;
+  }
+
+  #myBtn2:hover{
+      cursor: pointer;
+  }
+  
+
+  #myBtn3{
+      border-width: 0px;
+  }
+
+  #myBtn3:hover{
+      cursor: pointer;
+  }
+
+  #myBtn4{
+      border-width: 0px;
+  }
+
+  #myBtn4:hover{
+      cursor: pointer;
+  }
+
+  #myBtn5{
+      border-width: 0px;
+  }
+
+  #myBtn5:hover{
+      cursor: pointer;
+  }
+  #myBtn6{
+    border-width: 0px;
+}
+  #myBtn6:hover{
+    cursor: pointer;
+}
+  .modal-content h1{
+      text-align: center;
+  }
+
+  
 
 /* bekijk */
 
@@ -236,54 +325,3 @@ button{
     text-decoration: underline;
     text-decoration-color: white;
 }
-
-.navigation a {
-    position: relative;
-    font-size: 1.1em;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 500;
-    margin-left: 40px;
-}
-
-.navigation a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    width: 100%;
-    height: 3px;
-    background: #fff;
-    border-radius: 5px;
-    transform: scaleX(0);
-    transition: transform .5s;
-}
-
-.navigation a:hover:after {
-    transform-origin: left;
-    transform: scaleX(1);
-}
-
-.navigation .btnLogin-popup {
-    width: 130px;
-    height: 50px;
-    background: transparent;
-    border: 2px solid #fff;
-    outline: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1.1em;
-    color: #fff;
-    font-weight: 500;
-    margin-left: 40px;
-    transition: .5s;
-}
-
-.navigation .btnLogin-popup:hover {
-    background: #fff;
-    color: #162938;
-}
-  .modal-content h1{
-      text-align: center;
-  }
-  
