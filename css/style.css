@@ -31,8 +31,10 @@ header {
     width: 100%;
     background-color: red;
     display: flex;
+    color: #fff;
     justify-content: space-between;
     align-items: center;
+    text-align: center;
     z-index: 99;
 }
 
@@ -74,6 +76,8 @@ footer {
 .navi {
     display: flex;
 
+    padding: 20px;
+    border-radius: 10px;
 }
 
 .navigation a {
@@ -123,6 +127,81 @@ footer {
     color: #162938;
 }
 
+header h1{
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Card */
+.card{
+    display: grid;
+    grid-template-columns: 300px;
+    grid-template-rows: 50px 200px;
+    grid-template-areas: 'text'
+                         'img';
+
+    border-radius: 10px;
+    background-color: #121212;
+    text-align: center;
+}
+
+.card-img{
+    grid-area: img;
+    background: url("/assets/images/Logo_Lego.png");
+    background-size: contain;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+}
+
+.magic .card-img{
+    background: url("/assets/images/magic.jpg");
+    background-size: contain;
+}
+
+.lego .card-img{
+    background: url("/assets/images/fifa.png");
+    background-size: contain;
+}
+
+.theone .card-img{
+    background: url("/assets/images/lordoftherings.jpg");
+    background-size: cover;
+}
+
+.fort .card-img{
+    background: url("/assets/images/fortnite.jpg");
+    background-size: cover;
+}
+
+.nbb .card-img{
+    background: url("/assets/images/nationalebank.png");
+    background-size: contain;
+}
+
+.pokemon .card-img{
+    background: url("/assets/images/Pokemon-Logo.png");
+    background-size: cover;
+}
+.card-text{
+    grid-area: text;
+    color: white;
+    margin: auto;
+}
+
+a{
+    text-decoration: none;
+}
+
+button{
+    border-radius: 10px;
+}
+
+
+
 /* bekijk */
 
 #bekijk table {
@@ -159,3 +238,54 @@ footer {
     text-decoration: underline;
     text-decoration-color: white;
 }
+
+.navigation a {
+    position: relative;
+    font-size: 1.1em;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+}
+
+.navigation a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+
+.navigation a:hover:after {
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
+.navigation .btnLogin-popup {
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #fff;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: .5s;
+}
+
+.navigation .btnLogin-popup:hover {
+    background: #fff;
+    color: #162938;
+}
+  .modal-content h1{
+      text-align: center;
+  }
+  
