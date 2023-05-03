@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!---Coding By www.codinglabweb.com !--->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -8,17 +7,18 @@
     <title>Login</title>
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/stylelogin.css" />
+    <script src="js/model.js"></script>
   </head>
   <body>
     <div class="container">
       <input type="checkbox" id="check" />
       <div class="login form">
         <header>Login</header>
-        <form action="#">
-          <input type="text" placeholder="Enter your email" />
-          <input type="password" placeholder="Enter your password" />
+        <form>
+          <input type="text" id="username" placeholder="Enter your username" />
+          <input type="password" id="password" placeholder="Enter your password" />
           <a href="#">Forgot password?</a>
-          <input type="button" class="button" value="Login" />
+          <input type="button" onclick="login()" id="loginBtn" class="button" value="Login" />
         </form>
         <div class="signup">
           <span class="signup"
@@ -29,11 +29,11 @@
       </div>
       <div class="registration form">
         <header>Signup</header>
-        <form action="#">
-          <input type="text" placeholder="Enter your email" />
-          <input type="password" placeholder="Create a password" />
-          <input type="password" placeholder="Confirm your password" />
-          <input type="button" class="button" value="Signup" />
+        <form>
+          <input type="text" id="regUsername" placeholder="Enter your username" />
+          <input type="password" id="regPassword" placeholder="Create a password" />
+          <input type="password" id="confirmPassword" placeholder="Confirm your password" />
+          <input type="button" onclick="register()" class="button" value="Signup" />
         </form>
         <div class="signup">
           <span class="signup"
@@ -43,8 +43,9 @@
         </div>
       </div>
     </div>
+    <footer>
+      <p>&copy; Lego Team</p>
+    </footer>
+    <script src="js/model.js"></script>
   </body>
-  <footer>
-    <p>&copy; Lego Team</p>
-  </footer>
 </html>
