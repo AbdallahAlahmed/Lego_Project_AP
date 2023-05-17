@@ -294,23 +294,38 @@ button{
 
 /* bekijk */
 
-#bekijk table {
-    margin: auto;
+table {
+    border-collapse: collapse;
+    width: 100%;
 }
 
-#bekijk td {
-    border:black solid;
-    
-    padding: 2rem;
+th {
+    background-color: #f2f2f2;
+    color: #333;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
 }
 
-#bekijk th {
-    border:black solid;
-    color: #fff;
-    padding: 2rem;
-    font-size: 2rem;
-    text-transform: uppercase;
+th:first-child {
+    border-top-left-radius: 5px;
+}
 
+th:last-child {
+    border-top-right-radius: 5px;
+}
+
+td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #eaeaea;
 }
 
 .hiddenTitle {
