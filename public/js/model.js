@@ -34,7 +34,7 @@ btn5.onclick = function() {
     modal.style.display = "block";
   }
 
-  btn6.onclick = function() {
+btn6.onclick = function() {
     modal.style.display = "block";
   }
 
@@ -49,29 +49,34 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-//LOGIN
 
-/* ======================================================================
-  Author Custom JavaScript
-====================================================================== */
-
+// LOGIN
 function login() {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
-  const storedData = localStorage.getItem("registrationData");
 
-  if (storedData) {
-    const registrationData = JSON.parse(storedData);
-
-    if (registrationData.username === username && registrationData.password === password) {
+  fetch("/api/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      username: username,
+      password: password
+    })
+  })
+  .then(response => {
+    if (response.ok) {
       alert("Login successful!");
-      window.location.href = "/home"; // Redirect to dashboard page
+      window.location.href = "/home"; // Redirect to homepage
     } else {
       alert("Login failed. Please try again.");
     }
-  } else {
-    alert("No registration data found. Please register first.");
-  }
+  })
+  .catch(error => {
+    console.error(error);
+    alert("An error occurred. Please try again later.");
+  });
 }
 
 function register() {
@@ -84,12 +89,26 @@ function register() {
     return;
   }
 
-  const registrationData = {
-    username: username,
-    password: password
-  };
-
-  localStorage.setItem("registrationData", JSON.stringify(registrationData));
-  alert("Registration successful!");
-  document.getElementById("check").checked = false; // Close registration form
+  fetch("/api/register", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      username: username,
+      password: password
+    })
+  })
+  .then(response => {
+    if (response.ok) {
+      alert("Registration successful!");
+      document.getElementById("check").checked = false; // Close registration form
+    } else {
+      alert("Registration failed. Please try again.");
+    }
+  })
+  .catch(error => {
+    console.error(error);
+    alert("An error occurred. Please try again later.");
+  });
 }
