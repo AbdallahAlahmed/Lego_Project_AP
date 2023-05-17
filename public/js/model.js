@@ -54,67 +54,42 @@ window.onclick = function(event) {
 /* ======================================================================
   Author Custom JavaScript
 ====================================================================== */
+
 function login() {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
-  const endpoint = "https://reqres.in/api/login";
+  const storedData = localStorage.getItem("registrationData");
 
-  fetch(endpoint, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      email: username,
-      password: password
-    })
-  })
-  .then(response => {
-    if (response.ok) {
+  if (storedData) {
+    const registrationData = JSON.parse(storedData);
+
+    if (registrationData.username === username && registrationData.password === password) {
       alert("Login successful!");
-      window.location.href = "dashboard.html"; // Redirect to dashboard page
+      window.location.href = "/home"; // Redirect to dashboard page
     } else {
       alert("Login failed. Please try again.");
     }
-  })
-  .catch(error => {
-    console.error(error);
-    alert("An error occurred. Please try again later.");
-  });
+  } else {
+    alert("No registration data found. Please register first.");
+  }
 }
 
 function register() {
   const username = document.getElementById("regUsername").value;
   const password = document.getElementById("regPassword").value;
   const confirmPassword = document.getElementById("confirmPassword").value;
-  const endpoint = "https://reqres.in/api/register";
 
   if (password !== confirmPassword) {
     alert("Passwords do not match. Please try again.");
     return;
   }
 
-  fetch(endpoint, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      email: username,
-      password: password
-    })
-  })
-  .then(response => {
-    if (response.ok) {
-      alert("Registration successful!");
-      document.getElementById("check").checked = false; // Close registration form
-    } else {
-      alert("Registration failed. Please try again.");
-    }
-  })
-  .catch(error => {
-    console.error(error);
-    alert("An error occurred. Please try again later.");
-  });
-}
+  const registrationData = {
+    username: username,
+    password: password
+  };
 
+  localStorage.setItem("registrationData", JSON.stringify(registrationData));
+  alert("Registration successful!");
+  document.getElementById("check").checked = false; // Close registration form
+}
