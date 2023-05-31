@@ -21,6 +21,13 @@
     </nav>
   </header>
   <main>
+    <form>
+
+      <label for="sorteerAantal">Hoeveel minifigs wil je sorteren? </label>
+      <input type="number" min="1" max="10">
+      <button type="submit">OK</button>
+
+    </form>
     <table id="bekijk">
       <thead>
         <tr>
@@ -32,23 +39,21 @@
       </thead>
       <tbody>
         <tr>
-          <% if (count>1) { %>
-            
-            <td>
-              <%= data2.name %> <br>
+          <td>
+            <%= data2.name %> <br>
               <img height="250" alt="minifig" src=<%=data2.set_img_url %>
+          </td>
+          <% for (let i=0; i < data.length; i++){ %>
+            <td>
+              <%= data[i].name %>
+                <br>
+                <img height="250" alt="minifig" src=<%=data[i].set_img_url %>
             </td>
-            <% for (let i=0; i < data.length; i++){ %>
-                <td>
-                  <%= data[i].name %>
-                  <br>
-                  <img height="250" alt="minifig" src=<%=data[i].set_img_url %>
-                </td>
-              
+
             <% }; %>
 
 
-           <%}; %>
+
 
       </tbody>
     </table>
