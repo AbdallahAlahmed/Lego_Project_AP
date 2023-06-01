@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bekijken</title>
-  <link type="text/css" rel="stylesheet" href="css/styles.css" />
+  <link  rel="stylesheet" href="/css/styles.css" />
 </head>
 
 <body>
@@ -31,19 +31,27 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          
-          <td><img src="assets/images/randomguy.png" alt="" /></td>
-          <td> <%= data[0].name %> </td>
-          <td><img src="assets/images/fabriek.png" alt="" /></td>
-          <td>Data 4</td>
-        </tr>
-        <tr>
-          <td>Data 5</td>
-          <td>Data 6</td>
-          <td>Data 7</td>
-          <td>Data 8</td>
-        </tr>
+        
+          <% for (let i=0; i < user?.ChosenSet?.length  ; i++){ %>
+
+            <tr>
+
+              <td>
+                <img height="250" alt="minifig" src=<%=user?.ChosenSet?.[i].figUrl %>
+              </td>
+              <td>
+                <%= user?.ChosenSet?.[i].figId %>
+              </td>
+              <td>
+                <img height="250" alt="minifig" src=<%=user?.ChosenSet?.[i].setUrl %>
+              </td>
+              <td>
+                <%= user?.ChosenSet?.[i].setId %>
+              </td>
+  
+              <% }; %>
+            </tr>
+        
 
       </tbody>
     </table>

@@ -6,7 +6,7 @@ interface User {
     lastname: string,
     email: string,
     password : string,
-    ChosenSet: LegoFigs[]
+    ChosenSet?: LegoFigs[]
     BlackListed?: BlackListedFigs[]
 }
 
@@ -100,7 +100,7 @@ const main = async () => {
         await client.connect();
         console.log("connect to database");
 
-        // await DeleteAll();
+         
 
         let userProfile = client.db("Lego").collection("User").find<User>({}).toArray();
 

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blacklisted</title>
-    <link type="text/css" rel="stylesheet" href="css/styles.css" />
+    <link type="text/css" rel="stylesheet" href="/css/styles.css" />
   </head>
   </head>
   <body>
@@ -19,7 +19,48 @@
         <button class="btnLogin-popup"><a href="login">Login</a></button>
       </nav>
     </header>
-    <main></main>
+    <main>
+      <table id="bekijk">
+        <thead>
+          <tr>
+            <th>Afbeelding</th>
+            <th>Code</th>
+            <th>Set Afbeelding</th>
+            <th>Set Code</th>
+            <th>Reden</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+            <% for (let i=0; i < user?.BlackListed?.length  ; i++){ %>
+              <tr>
+  
+                <td>
+                  <img height="250" alt="minifig" src=<%=user?.BlackListed?.[i].figUrl %>
+                </td>
+                <td>
+                  <%= user?.BlackListed?.[i].figId %>
+                </td>
+                <td>
+                  <img height="250" alt="minifig" src=<%=user?.BlackListed?.[i].setUrl %>
+                </td>
+                <td>
+                  <%= user?.BlackListed?.[i].setId %>
+                </td>
+
+                <td>
+                  <%= user?.BlackListed?.[i].reden %>
+                </td>
+
+    
+                <% }; %>
+              </tr>
+          
+  
+        </tbody>
+      </table>
+  
+    </main>
     <footer>
       <p>&copy; Lego Team</p>
     </footer>

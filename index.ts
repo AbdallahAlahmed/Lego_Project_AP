@@ -1,5 +1,4 @@
 
-
 const express = require('express');
 const app = express();
 const ejs = require('ejs');
@@ -12,6 +11,8 @@ const axios = require('axios');
 app.set("view engine", "ejs");
 app.set("port", 3000);
 app.use(express.static('public'))
+app.use(express.json({ limit: "1mb" }));
+app.use(express.urlencoded({ extended: true }));
 
 interface User {
     _id?: ObjectId,
@@ -19,7 +20,7 @@ interface User {
     lastname: string,
     email: string,
     password: string,
-    ChosenSet: LegoFigs[]
+    ChosenSet?: LegoFigs[]
     BlackListed?: BlackListedFigs[]
 }
 interface BlackListedFigs {
@@ -31,28 +32,13 @@ interface BlackListedFigs {
 }
 
 interface LegoFigs {
-    figId: string,
-    figUrl: string,
-    setId: string,
-    setUrl: string,
+    figId: string | undefined,
+    figUrl: string | undefined,
+    setId: string | undefined,
+    setUrl: string | undefined,
 }
 
 import { MongoClient, ObjectId } from "mongodb";
-interface LegoSets {
-    count: number,
-    values: {
-        name: string,
-        set_img_url: string,
-    }
-}
-interface LegoFigs {
-    values: {
-        figId: string,
-        figUrlg: string,
-        setId: string,
-        setUrl: string
-    }
-}
 
 let legoFigs: LegoFigs[];
 
@@ -92,8 +78,16 @@ app.post("/signup", async (req : any, res:any) => {
 
         let userProfiles = client.db("Lego").collection("User");
 
-        let firstname : string = req.body.firstname;
-        console.log(firstname)
+        let newRegisterdUser : User[] = [{
+            firstname : req.body.firstname,
+            lastname : req.body.lastname,
+            email : req.body.email,
+            password : req.body.password  
+        }]
+
+      await userProfiles.insertMany(newRegisterdUser);
+
+      res.render('signupCompleet',{firstname : req.body.firstname})
     
 
     } catch (e){
@@ -106,33 +100,33 @@ app.post("/signup", async (req : any, res:any) => {
 });
 
 app.get('/login', (req: any, res: any) => {
-    res.render('login')
+    res.render('login',{message : " "})
 });
 
 app.post('/login', async (req: any, res : any)=>{
     try{
+
         // connect to database
-            await client.connect();
-            console.log("connected to database");
+        await client.connect();
+        console.log("connected to database");
         
-            // user email and password from form
-            let email = req.body.email;
-            let password = req.body.password;
-        console.log(email);
-        console.log(password);
+        // user email and password from form
+        let email = req.body.email;
+        let password = req.body.password;
+       
+        
+        let userProfiles = client.db("Lego").collection("User");
 
-        // let userProfiles = client.db("Lego").collection("User");
-
-        // //find user
+        //find user
         
-        // let loggedInUser = await userProfiles.findOne<User>({email : email});
+        let loggedInUser = await userProfiles.findOne<User>({email : email});
         
-        // // check pw
-        // if(password === loggedInUser?.password) {
-        //     res.redirect(`/user/${loggedInUser?._id}`)
-        // } else {
-        //     res.render('login',{message : "You have enterd a wrong email or password"})
-        // };
+        // check pw
+        if(password === loggedInUser?.password) {
+            res.redirect(`/user/${loggedInUser?._id}`)
+        } else {
+            res.render('login',{message : "You have enterd a wrong email or password"})
+        };
 
     
     } catch(e){
@@ -165,19 +159,54 @@ app.get('/user/:id', async (req: any, res: any) => {
         await client.close();
     }
 });
-app.get('/bekijk', (req: any, res: any) => {
+app.get('/user/:id/bekijk', async(req: any, res: any) => {
+    try {
 
-    const legoApi = async () => {
+        //Connect 
+        await client.connect();
+        console.log("Connected to Database")
 
-        let response = await axios.get(`https://rebrickable.com/api/v3/lego/minifigs/fig-000005/sets/?key=1940e6fc5741fb5fccb8643f3c735fd1`)
-        let data = response.data.results;
-        console.log(data[0].name)
-        res.render('bekijk', { data: data })
-    };
+        // get id
+        let id: number = req.params.id;
 
-    legoApi();
+        //Collection
+        let userProfiles = client.db("Lego").collection("User");
+
+        //Find User
+        let user = await userProfiles.findOne<User>({_id : new ObjectId(id)});
+        
+        // let gekozenFig : LegoFigs[] = [];
+
+        if(user?.ChosenSet){
+            
+            // for (let i = 0; i < user?.ChosenSet?.length; i++) {
+                
+            //     gekozenFig  = [{
+            //         figId : user?.ChosenSet?.[i].figId,
+            //         figUrl : user?.ChosenSet?.[i].figUrl,
+            //         setId : user?.ChosenSet?.[i].setId,
+            //         setUrl : user?.ChosenSet?.[i].setUrl  
+            //     }]
+                
+                
+            //     console.log(user?.ChosenSet?.[i]);
+                
+            // }
+
+    
+            res.render('bekijk', {user : user})
+        }
+
+
+        
+    } catch (e) {
+        console.log(e)
+    } finally{
+        await client.close();
+    }
+   
 });
-app.get('/ordenen', (req: any, res: any) => {
+app.get('/user/:id/ordenen', (req: any, res: any) => {
 
     const legoApi = async () => {
         //get random index voor random minifig
@@ -203,16 +232,15 @@ app.get('/ordenen', (req: any, res: any) => {
         //api call voor minifig
         let response2 = await axios.get(`https://rebrickable.com/api/v3/lego/minifigs/${id}/?key=1940e6fc5741fb5fccb8643f3c735fd1`)
 
+        
+
 
 
 
         let count = firstResponse.data.count;
         let data = firstResponse.data.results;
         let data2 = response2.data;
-
-
-
-
+        
 
 
         res.render('ordenen', { data: data, data2: data2, count: count })
@@ -250,8 +278,34 @@ app.get('/ordenen', (req: any, res: any) => {
 
 
 });
-app.get('/blacklist', (req: any, res: any) => {
-    res.render('blacklist')
+app.get('/user/:id/blacklist', async(req: any, res: any) => {
+    try {
+
+        //Connect 
+        await client.connect();
+        console.log("Connected to Database")
+
+        // get id
+        let id: number = req.params.id;
+
+        //Collection
+        let userProfiles = client.db("Lego").collection("User");
+
+        //Find User
+        let user = await userProfiles.findOne<User>({_id : new ObjectId(id)});
+        
+
+        if(user?.BlackListed){
+            res.render('blacklist', {user : user})
+        }
+
+        
+    } catch (e) {
+        console.log(e)
+    } finally{
+        await client.close();
+    }
+   
 });
 
 

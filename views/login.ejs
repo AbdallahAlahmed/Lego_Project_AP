@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="css/reset.css" />
-    <link type="text/css" rel="stylesheet" href="css/stylelogin.css" />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link type="text/css" rel="stylesheet" href="/css/stylelogin.css" />
     <script src="js/model.js"></script>
   </head>
   <body>
@@ -28,10 +28,14 @@
           </span>
         </div>
       </div>
+      <% if(message){ %>
+        <small><%= message %></small>
+      <% }; %>
+      
     </div>
     <footer>
       <p>&copy; Lego Team</p>
     </footer>
-    <script src="js/model.js"></script>
+    
   </body>
 </html>
