@@ -226,9 +226,11 @@ app.get('/user/:id/vraagOrdenen', async (req: any, res: any) => {
     }
 
 
-    // <button onclick="saveCount()" type="submit" ><a href="/user/<%= id %>/ordenen">OK</a></button>
+
 
 });
+
+
 
 app.post('/user/:id/vraagOrdenen', async (req: any, res: any) => {
 
@@ -248,14 +250,12 @@ app.post('/user/:id/vraagOrdenen', async (req: any, res: any) => {
         let orderAmount = req.body.orderAmount;
 
 
-        console.log("ghfghfh");
+
         console.log(orderAmount);
 
         res.redirect(`/user/${id}/ordenen/${orderAmount}`)
 
 
-
-        // res.render('vraagOrdenen', {id : id})
 
     } catch (e) {
         console.log(e);
@@ -266,8 +266,6 @@ app.post('/user/:id/vraagOrdenen', async (req: any, res: any) => {
 
     }
 
-
-    // <button onclick="saveCount()" type="submit" ><a href="/user/<%= id %>/ordenen">OK</a></button>
 
 });
 
@@ -282,9 +280,6 @@ app.get('/user/:id/ordenen/:orderAmount', async (req: any, res: any) => {
 
 
         const minifig = await randomFig();
-
-        console.log(minifig.setData)
-        console.log(minifig.minifigData)
 
         console.log(orderAmount);
 
@@ -303,6 +298,8 @@ app.get('/user/:id/ordenen/:orderAmount', async (req: any, res: any) => {
     }
 
 });
+let geordendeFiguren : number = 0;
+let aantalSkips : number = 0
 
 app.post('/user/:id/ordenen/:orderAmount', async (req: any, res: any) => {
 
@@ -315,6 +312,9 @@ app.post('/user/:id/ordenen/:orderAmount', async (req: any, res: any) => {
         //get id
         let userId = req.params.id
 
+        //aantal keer geskipped
+        
+
 
 
         let minifigNum = req.body.minifigNum;
@@ -322,6 +322,8 @@ app.post('/user/:id/ordenen/:orderAmount', async (req: any, res: any) => {
         let setImg = req.body.setImg;
         let setNum = req.body.setNum;
         let reden = req.body.reden
+        let skip = req.body.skip;
+        
 
         let userProfiles = client.db("Lego").collection("User");
 
@@ -341,31 +343,39 @@ app.post('/user/:id/ordenen/:orderAmount', async (req: any, res: any) => {
             setUrl: setImg
         }]
 
+        console.log(skip);
+
+        if(skip){
+            aantalSkips++
+        }
+
         if (reden) {
             let updateBlacklist = await userProfiles.updateOne(
                 { _id: new ObjectId(userId) },
                 { $push: { BlackListed: { $each: blacklistedSet } } }
             )
-        } else {
+        } else if (skip == undefined) {
             const results = await userProfiles.updateOne(
                 { _id: new ObjectId(userId) },
                 { $push: { ChosenSet: { $each: gekozenSet } } }
             );
+            
+            geordendeFiguren++;
 
         }
-
 
         let orderAmount: number = req.params.orderAmount;
         let id: number = req.params.id;
 
         orderAmount--;
+        console.log(aantalSkips)
 
         const minifig = await randomFig();
 
         if (orderAmount != 0) {
             res.render('ordenen', { setData: minifig.setData, minifigData: minifig.minifigData, orderAmount: orderAmount, id: id })
         } else {
-            res.render('vraagOrdenen', { id: userId })
+            res.render('overzicht', { id: userId, aantalSkips : aantalSkips, orderAmount : orderAmount , geordendeFiguren : geordendeFiguren})
         }
 
 
@@ -399,7 +409,7 @@ app.get('/user/:id/blacklist', async (req: any, res: any) => {
 
 
         if (user?.BlackListed) {
-            res.render('blacklist', { user: user, id : id })
+            res.render('blacklist', { user: user, id: id })
         }
 
 

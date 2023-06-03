@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="nl-BE">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home</title>
+  <link type="text/css" rel="stylesheet" href="/css/styles.css" />
+
+
+<%- include ("partials/header.ejs") %>
+
+<body>
+  <main>
+    <% if( orderAmount === 0){ %>
+        <p>Je hebt <%= aantalSkips %> minifig(s) geskipt</p>
+        <p>Je hebt <%= geordendeFiguren %> minfig(s) geordend </p>
+      <% }; %>
+
+    <h2> <a href="/user/<%= id %>/vraagOrdenen">Klik hier om terug minifigs te ordenen</a></h2>
+   
+
+    
+ <%- include ("partials/footer.ejs") %>
