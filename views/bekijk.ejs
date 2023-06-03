@@ -19,6 +19,7 @@
           <th>Code</th>
           <th>Set Afbeelding</th>
           <th>Set Code</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -38,6 +39,14 @@
               </td>
               <td>
                 <%= user?.ChosenSet?.[i].setId %>
+              </td>
+              <td>
+                <form method="post" action="/user/<%= id %>/bekijk">
+                  <input name="minifigNum" value="<%= user?.ChosenSet?.[i].figId %>" hidden>
+                  <input name="minifigImg" value="<%= user?.ChosenSet?.[i].setId %>" hidden>
+                  <input name="delete" type="submit" value="delete">
+                </form>
+
               </td>
   
               <% }; %>

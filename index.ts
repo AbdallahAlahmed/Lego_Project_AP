@@ -194,6 +194,46 @@ app.get('/user/:id/bekijk', async (req: any, res: any) => {
 
 });
 
+app.post('/user/:id/bekijk', async (req: any, res: any) => {
+    try {
+
+        //Connect 
+        await client.connect();
+        console.log("Connected to Database")
+
+        // get id
+        let id: number = req.params.id;
+        //get minifigid
+        let figId: number = req.body.minifigNum;
+        //Collection
+        let userProfiles = client.db("Lego").collection("User");
+        //Find User
+        let user = await userProfiles.findOne<User>({ _id: new ObjectId(id) });
+
+
+        if (figId) {
+            await userProfiles.updateOne(
+                { _id: new ObjectId(id) },
+                { $pull: { ChosenSet: { figId: figId } } }
+            );
+
+            let updatedUser = await userProfiles.findOne<User>({ _id: new ObjectId(id) });
+
+
+            res.render('bekijk', { user: updatedUser, id: id })
+        } else if (user?.ChosenSet) {
+            res.render('bekijk', { user: user, id: id })
+        }
+
+
+    } catch (e) {
+        console.log(e)
+    } finally {
+        await client.close();
+    }
+
+})
+
 
 app.get('/user/:id/vraagOrdenen', async (req: any, res: any) => {
 
@@ -298,8 +338,8 @@ app.get('/user/:id/ordenen/:orderAmount', async (req: any, res: any) => {
     }
 
 });
-let geordendeFiguren : number = 0;
-let aantalSkips : number = 0
+let geordendeFiguren: number = 0;
+let aantalSkips: number = 0
 
 app.post('/user/:id/ordenen/:orderAmount', async (req: any, res: any) => {
 
@@ -313,7 +353,7 @@ app.post('/user/:id/ordenen/:orderAmount', async (req: any, res: any) => {
         let userId = req.params.id
 
         //aantal keer geskipped
-        
+
 
 
 
@@ -323,7 +363,7 @@ app.post('/user/:id/ordenen/:orderAmount', async (req: any, res: any) => {
         let setNum = req.body.setNum;
         let reden = req.body.reden
         let skip = req.body.skip;
-        
+
 
         let userProfiles = client.db("Lego").collection("User");
 
@@ -345,7 +385,7 @@ app.post('/user/:id/ordenen/:orderAmount', async (req: any, res: any) => {
 
         console.log(skip);
 
-        if(skip){
+        if (skip) {
             aantalSkips++
         }
 
@@ -359,7 +399,7 @@ app.post('/user/:id/ordenen/:orderAmount', async (req: any, res: any) => {
                 { _id: new ObjectId(userId) },
                 { $push: { ChosenSet: { $each: gekozenSet } } }
             );
-            
+
             geordendeFiguren++;
 
         }
@@ -375,7 +415,7 @@ app.post('/user/:id/ordenen/:orderAmount', async (req: any, res: any) => {
         if (orderAmount != 0) {
             res.render('ordenen', { setData: minifig.setData, minifigData: minifig.minifigData, orderAmount: orderAmount, id: id })
         } else {
-            res.render('overzicht', { id: userId, aantalSkips : aantalSkips, orderAmount : orderAmount , geordendeFiguren : geordendeFiguren})
+            res.render('overzicht', { id: userId, aantalSkips: aantalSkips, orderAmount: orderAmount, geordendeFiguren: geordendeFiguren })
         }
 
 
@@ -421,30 +461,120 @@ app.get('/user/:id/blacklist', async (req: any, res: any) => {
 
 });
 
-app.get('/user/:id/:figId/parts', async(req: any, res:any)=>{
+app.post('/user/:id/blacklist', async (req: any, res: any) => {
+    try {
 
-    let figId : number = req.params.figId;
-    let id : number = req.params.id
+        //Connect 
+        await client.connect();
+        console.log("Connected to Database")
+
+        // get id
+        let id: number = req.params.id;
+    
+        // get figId
+        let figId = req.body.minifigNum;
+
+        //Collection
+        let userProfiles = client.db("Lego").collection("User");
+
+        //Find User
+        let user = await userProfiles.findOne<User>({ _id: new ObjectId(id) });
+
+
+        if(figId){
+            await userProfiles.updateOne(
+                { _id: new ObjectId(id) },
+                { $pull: { BlackListed: { figId: figId } } }
+            );
+
+            let updatedUser = await userProfiles.findOne<User>({ _id: new ObjectId(id) });
+            res.render('blacklist', { user: updatedUser, id: id })
+
+        } else if (user?.BlackListed) {
+            res.render('blacklist', { user: user, id: id })
+        }
+
+
+
+
+    } catch (e) {
+        console.log(e)
+    } finally {
+        await client.close();
+    }
+
+});
+
+app.post('/user/:id/redenAanpassen', async (req: any, res: any) => {
+    try {
+
+        //Connect 
+        await client.connect();
+        console.log("Connected to Database")
+
+        // get id
+        let id: number = req.params.id;
+    
+        // get reden
+        let redenAanpassen = req.body.reden;
+        let nieuweReden = req.body.nieuweReden;
+        let figId = req.body.minifigNum
+
+        //Collection
+        let userProfiles = client.db("Lego").collection("User");
+
+        //Find User
+        let user = await userProfiles.findOne<User>({ _id: new ObjectId(id) });
+
+
+        if(redenAanpassen){
+            await userProfiles.updateOne(
+                { _id: new ObjectId(id), 'BlackListed.figId': figId },
+                { $set: { 'BlackListed.$.reden': nieuweReden } }
+              );
+
+            let updatedUser = await userProfiles.findOne<User>({ _id: new ObjectId(id) });
+            res.render('blacklist', { user: updatedUser, id: id })
+
+        } else if (user?.BlackListed) {
+            res.render('blacklist', { user: user, id: id })
+        }
+
+
+
+
+    } catch (e) {
+        console.log(e)
+    } finally {
+        await client.close();
+    }
+
+});
+
+app.get('/user/:id/:figId/parts', async (req: any, res: any) => {
+
+    let figId: number = req.params.figId;
+    let id: number = req.params.id
 
     let responseParts = await axios.get(`https://rebrickable.com/api/v3/lego/minifigs/${figId}/parts/?key=1940e6fc5741fb5fccb8643f3c735fd1`)
 
     let dataParts = responseParts.data.results;
 
-    res.render('parts',{dataParts : dataParts , id : id})
+    res.render('parts', { dataParts: dataParts, id: id })
 
 
 });
 
-app.get('/user/:id/:setId/minifigs', async(req: any, res:any)=>{
+app.get('/user/:id/:setId/minifigs', async (req: any, res: any) => {
 
-    let setId : number = req.params.setId;
-    let id : number = req.params.id
+    let setId: number = req.params.setId;
+    let id: number = req.params.id
 
     let responseSets = await axios.get(`https://rebrickable.com/api/v3/lego/sets/${setId}/minifigs/?key=1940e6fc5741fb5fccb8643f3c735fd1`)
 
     let dataSets = responseSets.data.results;
 
-    res.render('minifigs',{dataSets : dataSets , id : id})
+    res.render('minifigs', { dataSets: dataSets, id: id })
 
 });
 

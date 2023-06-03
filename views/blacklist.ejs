@@ -20,6 +20,7 @@
             <th>Set Afbeelding</th>
             <th>Set Code</th>
             <th>Reden</th>
+            <th>Delete / Reden Aanpassen</th>
           </tr>
         </thead>
         <tbody>
@@ -42,6 +43,21 @@
 
                 <td>
                   <%= user?.BlackListed?.[i].reden %>
+                </td>
+                
+                <td>
+                  <form method="post" action="/user/<%= id %>/blacklist">
+                    <input name="minifigNum" value="<%= user?.BlackListed?.[i].figId %>" hidden>
+                    <input name="delete" type="submit" value="delete">
+                  </form> 
+                  <br>
+                  <form method="post" action="/user/<%= id %>/redenAanpassen">
+                    <input name="minifigNum" value="<%= user?.BlackListed?.[i].figId %>" hidden>
+                    <input name="reden" value="<%= user?.BlackListed?.[i].reden %>" hidden>
+                    
+                    <input name="redenAanpassen" type="submit" value="Reden Aanpassen">
+                    <input name="nieuweReden" type="text" required >
+                  </form>
                 </td>
 
     
