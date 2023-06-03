@@ -12,13 +12,6 @@
 
 <body>
   <main>
-    <form>
-
-      <label for="sorteerAantal">Hoeveel minifigs wil je sorteren? </label>
-      <input type="number" min="1" max="10">
-      <button type="submit">OK</button>
-
-    </form>
     <table id="bekijk">
       <thead>
         <tr>
@@ -26,27 +19,42 @@
           <th>set A</th>
           <th>Set B</th>
           <th>Set C</th>
+          <th>Set D</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>
-            <%= data2.name %> <br>
-              <img height="250" alt="minifig" src=<%=data2.set_img_url %>
+            <%= minifigData.name %> <br>
+              <img height="250" alt="minifig" src=<%=minifigData.set_img_url %>
           </td>
-          <% for (let i=0; i < data.length; i++){ %>
-            <td>
-              <%= data[i].name %>
-                <br>
-                <img height="250" alt="minifig" src=<%=data[i].set_img_url %>
-            </td>
+          <% for (let i=0; i < setData.length; i++){ %>
+
+            <form method="post" action="/user/<%= id %>/ordenen/<%= orderAmount %>">
+              <td>
+                <%= setData[i].name %>
+                  <br>
+                  <img height="200" alt="minifig" src=<%=setData[i].set_img_url %> <br>
+                  <input name="setImg" value="<%=setData[i].set_img_url %>" hidden>
+                  <input name="setNum" value="<%=setData[i].set_num %>" hidden>
+                  <input name="minifigNum" value="<%=minifigData.set_num %>" hidden>
+                  <input name="minifigImg" value="<%=minifigData.set_img_url %>" hidden>
+                  <input type="submit">
+                  <%=setData[i].name %></button>
+              </td>
+            </form>
+
 
             <% }; %>
         </tr>
 
-
-
-
       </tbody>
     </table>
-<%- include ("partials/footer.ejs") %>
+    <form method="post" action="/user/<%= id %>/ordenen/<%= orderAmount %>">
+      <input name="setImg" value="<%=setData[i].set_img_url %>" hidden>
+      <input name="setNum" value="<%=setData[i].set_num %>" hidden>
+      <input name="minifigNum" value="<%=minifigData.set_num %>" hidden>
+      <input name="minifigImg" value="<%=minifigData.set_img_url %>" hidden>
+      <input name="skip" type="submit">
+    </form>
+    <%- include ("partials/footer.ejs") %>

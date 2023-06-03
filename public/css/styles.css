@@ -200,7 +200,6 @@ a{
 button{
     border-radius: 10px;
 }
-
 /* model pop up  */
 .modal {
     display: none; /* Hidden by default */
@@ -292,6 +291,7 @@ button{
 
   
 
+
 /* bekijk */
 
 table {
@@ -324,9 +324,9 @@ tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-tr:hover {
+/* tr:hover {
     background-color: #eaeaea;
-}
+} */
 
 .hiddenTitle {
     position: absolute;
