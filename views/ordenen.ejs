@@ -6,20 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ordenen</title>
-  <link type="text/css" rel="stylesheet" href="css/styles.css" />
-</head>
+  <link type="text/css" rel="stylesheet" href="/css/styles.css" />
+
+  <%- include ("partials/header.ejs") %>
 
 <body>
-  <header>
-    <h2 class="logo">logo</h2>
-    <nav class="navigation">
-      <a href="home">Home</a>
-      <a href="bekijk">Bekijken</a>
-      <a href="blacklist">Blacklisted</a>
-      <a href="ordenen">Ordenen</a>
-      <button class="btnLogin-popup"><a href="login">Login</a></button>
-    </nav>
-  </header>
   <main>
     <table id="bekijk">
       <thead>
@@ -28,34 +19,43 @@
           <th>set A</th>
           <th>Set B</th>
           <th>Set C</th>
+          <th>Set D</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <% if (count>1) { %>
-            
-            <td>
-              <%= data2.name %> <br>
-              <img height="250" alt="minifig" src=<%=data2.set_img_url %>
-            </td>
-            <% for (let i=0; i < data.length; i++){ %>
-                <td>
-                  <%= data[i].name %>
+          <td>
+            <%= minifigData.name %> <br>
+              <img height="250" alt="minifig" src=<%=minifigData.set_img_url %>
+          </td>
+          <% for (let i=0; i < setData.length; i++){ %>
+
+            <form method="post" action="/user/<%= id %>/ordenen/<%= orderAmount %>">
+              <td>
+                <%= setData[i].name %>
                   <br>
-                  <img height="250" alt="minifig" src=<%=data[i].set_img_url %>
-                </td>
-              
+                  <img height="200" alt="minifig" src=<%=setData[i].set_img_url %> <br>
+                  <input name="setImg" value="<%=setData[i].set_img_url %>" hidden>
+                  <input name="setNum" value="<%=setData[i].set_num %>" hidden>
+                  <input name="minifigNum" value="<%=minifigData.set_num %>" hidden>
+                  <input name="minifigImg" value="<%=minifigData.set_img_url %>" hidden>
+                  <input type="submit">
+                  <%=setData[i].name %></button>
+              </td>
+            </form>
+
+
             <% }; %>
-
-
-           <%}; %>
+        </tr>
 
       </tbody>
     </table>
-  </main>
-  <footer>
-    <p>&copy; Lego Team</p>
-  </footer>
-</body>
-
-</html>
+    <form method="post" action="/user/<%= id %>/ordenen/<%= orderAmount %>">
+      
+        <input name="minifigNum" value="<%=minifigData.set_num %>" hidden>
+        <input name="minifigImg" value="<%=minifigData.set_img_url %>" hidden>
+        <input name="skip" type="submit">
+        <input name="reden" type="text" placeholder="Geef een reden" required>
+      
+    </form>
+    <%- include ("partials/footer.ejs") %>

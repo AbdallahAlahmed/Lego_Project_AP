@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="css/reset.css" />
-    <link type="text/css" rel="stylesheet" href="css/stylelogin.css" />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link type="text/css" rel="stylesheet" href="/css/stylelogin.css" />
     <script src="js/model.js"></script>
   </head>
   <body>
@@ -14,38 +14,23 @@
       <input type="checkbox" id="check" />
       <div class="login form">
         <header>Login</header>
-        <form>
-          <input type="text" id="username" placeholder="Enter your username" />
-          <input type="password" id="password" placeholder="Enter your password" />
+        <form action="/login" method="post" >
+          <input type="email" name="email" placeholder="Enter your email" required />
+          <input type="password" id="password" name="password" placeholder="Enter your password" required />
           <a href="#">Forgot password?</a>
-          <input type="button" onclick="login()" id="loginBtn" class="button" value="Login" />
+          <input type="submit" id="loginBtn" class="button" value="login" />
         </form>
+        
         <div class="signup">
           <span class="signup"
             >Don't have an account?
-            <label for="check">Signup</label>
+            <a href="/signup">Sign up</a>
           </span>
         </div>
       </div>
-      <div class="registration form">
-        <header>Signup</header>
-        <form>
-          <input type="text" id="regUsername" placeholder="Enter your username" />
-          <input type="password" id="regPassword" placeholder="Create a password" />
-          <input type="password" id="confirmPassword" placeholder="Confirm your password" />
-          <input type="button" onclick="register()" class="button" value="Signup" />
-        </form>
-        <div class="signup">
-          <span class="signup"
-            >Already have an account?
-            <label for="check">Login</label>
-          </span>
-        </div>
-      </div>
+      <% if(message){ %>
+        <small><%= message %></small>
+      <% }; %>
+      
     </div>
-    <footer>
-      <p>&copy; Lego Team</p>
-    </footer>
-    <script src="js/model.js"></script>
-  </body>
-</html>
+ <%- include ("partials/footer.ejs") %>
