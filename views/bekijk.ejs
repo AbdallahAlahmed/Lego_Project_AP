@@ -28,13 +28,13 @@
             <tr>
 
               <td>
-                <img height="250" alt="minifig" src=<%=user?.ChosenSet?.[i].figUrl %>
+               <a href="/user/<%= id %>/<%= user?.ChosenSet?.[i].figId %>/parts"><img height="250" alt="minifig" src=<%=user?.ChosenSet?.[i].figUrl %> </a> 
               </td>
               <td>
                 <%= user?.ChosenSet?.[i].figId %>
               </td>
               <td>
-                <img height="250" alt="minifig" src=<%=user?.ChosenSet?.[i].setUrl %>
+               <a href="/user/<%= id %>/<%= user?.ChosenSet?.[i].setId %>/minifigs"><img height="250" alt="minifig" src=<%=user?.ChosenSet?.[i].setUrl %> </a>
               </td>
               <td>
                 <%= user?.ChosenSet?.[i].setId %>
