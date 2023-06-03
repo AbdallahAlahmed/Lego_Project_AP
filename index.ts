@@ -42,7 +42,7 @@ interface LegoFigs {
 import { MongoClient, ObjectId } from "mongodb";
 import { randomFig } from "./randomFig";
 
-let legoFigs: LegoFigs[];
+
 
 
 
@@ -418,6 +418,33 @@ app.get('/user/:id/blacklist', async (req: any, res: any) => {
     } finally {
         await client.close();
     }
+
+});
+
+app.get('/user/:id/:figId/parts', async(req: any, res:any)=>{
+
+    let figId : number = req.params.figId;
+    let id : number = req.params.id
+
+    let responseParts = await axios.get(`https://rebrickable.com/api/v3/lego/minifigs/${figId}/parts/?key=1940e6fc5741fb5fccb8643f3c735fd1`)
+
+    let dataParts = responseParts.data.results;
+
+    res.render('parts',{dataParts : dataParts , id : id})
+
+
+});
+
+app.get('/user/:id/:setId/minifigs', async(req: any, res:any)=>{
+
+    let setId : number = req.params.setId;
+    let id : number = req.params.id
+
+    let responseSets = await axios.get(`https://rebrickable.com/api/v3/lego/sets/${setId}/minifigs/?key=1940e6fc5741fb5fccb8643f3c735fd1`)
+
+    let dataSets = responseSets.data.results;
+
+    res.render('minifigs',{dataSets : dataSets , id : id})
 
 });
 

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="nl-BE">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parts</title>
+  <link  rel="stylesheet" href="/css/styles.css" />
+
+<%- include ("partials/header.ejs") %>
+
+
+<body>
+  <main>
+    <table id="bekijk">
+      <thead>
+        <tr>
+          <th>Part</th>
+          <th>Part Naam</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+          <% for (let i=0; i < dataParts.length  ; i++){ %>
+
+            <tr>
+
+              <td>
+                <img height="250" alt="part" src=<%=dataParts[i].part.part_img_url %>
+              </td>
+              <td>
+                <%= dataParts[i].part.name %>
+              </td>
+              <% }; %>
+            </tr>
+        
+
+      </tbody>
+    </table>
+
+ <%- include ("partials/footer.ejs") %>
