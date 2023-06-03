@@ -138,7 +138,7 @@ app.get('/user/:id', async (req: any, res: any) => {
 
         //find the user
         let user = await userProfiles.findOne<User>({ _id: new ObjectId(id) })
-        res.render('home' , {id : id})
+        res.render('home', { id: id })
     } catch (e) {
         console.log(e);
 
@@ -181,7 +181,7 @@ app.get('/user/:id/bekijk', async (req: any, res: any) => {
             // }
 
 
-            res.render('bekijk', { user: user, id : id })
+            res.render('bekijk', { user: user, id: id })
         }
 
 
@@ -279,7 +279,7 @@ app.get('/user/:id/ordenen/:orderAmount', async (req: any, res: any) => {
 
         let orderAmount: number = req.params.orderAmount;
         let id: number = req.params.id;
-        
+
 
         const minifig = await randomFig();
 
@@ -315,15 +315,24 @@ app.post('/user/:id/ordenen/:orderAmount', async (req: any, res: any) => {
         //get id
         let userId = req.params.id
 
-        
 
-        let minifigNum= req.body.minifigNum;
+
+        let minifigNum = req.body.minifigNum;
         let minifigImg = req.body.minifigImg;
         let setImg = req.body.setImg;
         let setNum = req.body.setNum;
+        let reden = req.body.reden
 
         let userProfiles = client.db("Lego").collection("User");
-    
+
+
+        let blacklistedSet: BlackListedFigs[] = [{
+            figId: minifigNum,
+            figUrl: minifigImg,
+            setId: setNum,
+            setUrl: minifigImg,
+            reden: reden
+        }]
 
         let gekozenSet: LegoFigs[] = [{
             figId: minifigNum,
@@ -332,14 +341,20 @@ app.post('/user/:id/ordenen/:orderAmount', async (req: any, res: any) => {
             setUrl: setImg
         }]
 
+        if (reden) {
+            let updateBlacklist = await userProfiles.updateOne(
+                { _id: new ObjectId(userId) },
+                { $push: { BlackListed: { $each: blacklistedSet } } }
+            )
+        } else {
+            const results = await userProfiles.updateOne(
+                { _id: new ObjectId(userId) },
+                { $push: { ChosenSet: { $each: gekozenSet } } }
+            );
 
-       const results = await userProfiles.updateOne(
-            { _id: new ObjectId(userId) },
-            { $push: { ChosenSet: { $each: gekozenSet } } }
-        );
+        }
 
 
-    
         let orderAmount: number = req.params.orderAmount;
         let id: number = req.params.id;
 
@@ -347,9 +362,9 @@ app.post('/user/:id/ordenen/:orderAmount', async (req: any, res: any) => {
 
         const minifig = await randomFig();
 
-        if(orderAmount!=0){
+        if (orderAmount != 0) {
             res.render('ordenen', { setData: minifig.setData, minifigData: minifig.minifigData, orderAmount: orderAmount, id: id })
-        } else{
+        } else {
             res.render('vraagOrdenen', { id: userId })
         }
 
@@ -384,7 +399,7 @@ app.get('/user/:id/blacklist', async (req: any, res: any) => {
 
 
         if (user?.BlackListed) {
-            res.render('blacklist', { user: user })
+            res.render('blacklist', { user: user, id : id })
         }
 
 

@@ -51,10 +51,11 @@
       </tbody>
     </table>
     <form method="post" action="/user/<%= id %>/ordenen/<%= orderAmount %>">
-      <input name="setImg" value="<%=setData[i].set_img_url %>" hidden>
-      <input name="setNum" value="<%=setData[i].set_num %>" hidden>
-      <input name="minifigNum" value="<%=minifigData.set_num %>" hidden>
-      <input name="minifigImg" value="<%=minifigData.set_img_url %>" hidden>
-      <input name="skip" type="submit">
+      
+        <input name="minifigNum" value="<%=minifigData.set_num %>" hidden>
+        <input name="minifigImg" value="<%=minifigData.set_img_url %>" hidden>
+        <input name="skip" type="submit">
+        <input name="reden" type="text" placeholder="Geef een reden" required>
+      
     </form>
     <%- include ("partials/footer.ejs") %>
