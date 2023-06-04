@@ -12,13 +12,16 @@
 
 <body>
   <main>
+    <div id="vraagOrdenen-container">
+      <form id="vraag-form" method="post" action="/user/<%= id %>/vraagOrdenen">
   
-    <form method="post" action="/user/<%= id %>/vraagOrdenen">
+        <label for="sorteerAantal">Er zijn geen minifigs om te sorteren, Hoeveel minifigs wil jij sorteren? </label>
+        <input id="vraagInput" type="number" name="orderAmount" min="1" max="10">
+        <input id="submitVraag" type="submit" value="Go">
+      </form>
 
-      <label for="sorteerAantal">Er zijn geen minifigs om te sorteren, Hoeveel minifigs wil jij sorteren? </label>
-      <input id="numberInput" type="number" name="orderAmount" min="1" max="10">
-      <input type="submit" value="okey">
-    </form>
+    </div>
+  
 
    
   

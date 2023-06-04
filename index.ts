@@ -44,8 +44,6 @@ import { randomFig } from "./randomFig";
 
 
 
-
-
 const uri = "mongodb+srv://UserLego:UserTeamLego@lego.u2sfsfn.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri);
 
@@ -162,24 +160,7 @@ app.get('/user/:id/bekijk', async (req: any, res: any) => {
         //Find User
         let user = await userProfiles.findOne<User>({ _id: new ObjectId(id) });
 
-        // let gekozenFig : LegoFigs[] = [];
-
         if (user?.ChosenSet) {
-
-            // for (let i = 0; i < user?.ChosenSet?.length; i++) {
-
-            //     gekozenFig  = [{
-            //         figId : user?.ChosenSet?.[i].figId,
-            //         figUrl : user?.ChosenSet?.[i].figUrl,
-            //         setId : user?.ChosenSet?.[i].setId,
-            //         setUrl : user?.ChosenSet?.[i].setUrl  
-            //     }]
-
-
-            //     console.log(user?.ChosenSet?.[i]);
-
-            // }
-
 
             res.render('bekijk', { user: user, id: id })
         }
@@ -252,8 +233,6 @@ app.get('/user/:id/vraagOrdenen', async (req: any, res: any) => {
 
         let count = req.body.count;
 
-
-
         res.render('vraagOrdenen', { id: id })
 
     } catch (e) {
@@ -264,8 +243,6 @@ app.get('/user/:id/vraagOrdenen', async (req: any, res: any) => {
         await client.close();
 
     }
-
-
 
 
 });
@@ -289,9 +266,6 @@ app.post('/user/:id/vraagOrdenen', async (req: any, res: any) => {
 
         let orderAmount = req.body.orderAmount;
 
-
-
-        console.log(orderAmount);
 
         res.redirect(`/user/${id}/ordenen/${orderAmount}`)
 
@@ -321,12 +295,7 @@ app.get('/user/:id/ordenen/:orderAmount', async (req: any, res: any) => {
 
         const minifig = await randomFig();
 
-        console.log(orderAmount);
-
-
         res.render('ordenen', { setData: minifig.setData, minifigData: minifig.minifigData, orderAmount: orderAmount, id: id })
-
-
 
     } catch (e) {
         console.log(e);
@@ -349,14 +318,8 @@ app.post('/user/:id/ordenen/:orderAmount', async (req: any, res: any) => {
         console.log("Connected to database")
 
 
-        //get id
+        //get info
         let userId = req.params.id
-
-        //aantal keer geskipped
-
-
-
-
         let minifigNum = req.body.minifigNum;
         let minifigImg = req.body.minifigImg;
         let setImg = req.body.setImg;
@@ -408,7 +371,6 @@ app.post('/user/:id/ordenen/:orderAmount', async (req: any, res: any) => {
         let id: number = req.params.id;
 
         orderAmount--;
-        console.log(aantalSkips)
 
         const minifig = await randomFig();
 
@@ -416,6 +378,8 @@ app.post('/user/:id/ordenen/:orderAmount', async (req: any, res: any) => {
             res.render('ordenen', { setData: minifig.setData, minifigData: minifig.minifigData, orderAmount: orderAmount, id: id })
         } else {
             res.render('overzicht', { id: userId, aantalSkips: aantalSkips, orderAmount: orderAmount, geordendeFiguren: geordendeFiguren })
+            //reset geordende figuren
+            geordendeFiguren = 0;
         }
 
 
@@ -539,9 +503,6 @@ app.post('/user/:id/redenAanpassen', async (req: any, res: any) => {
         } else if (user?.BlackListed) {
             res.render('blacklist', { user: user, id: id })
         }
-
-
-
 
     } catch (e) {
         console.log(e)

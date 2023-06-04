@@ -25,15 +25,15 @@ export const randomFig = async () : Promise<any> => {
     let setData = firstResponse.data.results;
     let minifigData = response2.data;
 
-    if(count<2){
+    if(count<2 && count>4){
 
         return randomFig();
 
     }
 
+
     return {minifigData,setData}
 
 }
-
 
 

@@ -53,7 +53,7 @@ main {
     gap: 20px;
     padding: 20px;
     border-radius: 10px;
-    
+
 }
 
 
@@ -67,7 +67,7 @@ footer {
     text-align: center;
     margin-top: 29.5rem;
     padding-top: 5rem;
-    
+
     background-color: red;
 }
 
@@ -128,7 +128,7 @@ footer {
     color: #162938;
 }
 
-header h1{
+header h1 {
     bottom: 0;
     left: 0;
     width: 100%;
@@ -137,19 +137,19 @@ header h1{
 }
 
 /* Card */
-.card{
+.card {
     display: grid;
     grid-template-columns: 300px;
     grid-template-rows: 50px 200px;
     grid-template-areas: 'text'
-                         'img';
+        'img';
 
     border-radius: 10px;
     background-color: #121212;
     text-align: center;
 }
 
-.card-img{
+.card-img {
     grid-area: img;
     background: url("/assets/images/Logo_Lego.png");
     background-size: contain;
@@ -158,138 +158,240 @@ header h1{
 
 }
 
-.magic .card-img{
+.magic .card-img {
     background: url("/assets/images/magic.jpg");
     background-size: contain;
 }
 
-.lego .card-img{
+.lego .card-img {
     background: url("/assets/images/fifa.png");
     background-size: contain;
 }
 
-.theone .card-img{
+.theone .card-img {
     background: url("/assets/images/lordoftherings.jpg");
     background-size: cover;
 }
 
-.fort .card-img{
+.fort .card-img {
     background: url("/assets/images/fortnite.jpg");
     background-size: cover;
 }
 
-.nbb .card-img{
+.nbb .card-img {
     background: url("/assets/images/nationalebank.png");
     background-size: contain;
 }
 
-.pokemon .card-img{
+.pokemon .card-img {
     background: url("/assets/images/Pokemon-Logo.png");
     background-size: cover;
 }
-.card-text{
+
+.card-text {
     grid-area: text;
     color: white;
     margin: auto;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
-button{
+button {
     border-radius: 10px;
 }
+
 /* model pop up  */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
 
-  .modal-content {
+.modal-content {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-  }
-  
-  /* The Close Button */
-  .close {
+}
+
+/* The Close Button */
+.close {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
+}
+
+.close:hover,
+.close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
-  }
+}
 
-  #myBtn{
-      border-width: 0px;
-  }
-
-  #myBtn:hover{
-      cursor: pointer;
-  }
-  
-
-  #myBtn2{
-      border-width: 0px;
-  }
-
-  #myBtn2:hover{
-      cursor: pointer;
-  }
-  
-
-  #myBtn3{
-      border-width: 0px;
-  }
-
-  #myBtn3:hover{
-      cursor: pointer;
-  }
-
-  #myBtn4{
-      border-width: 0px;
-  }
-
-  #myBtn4:hover{
-      cursor: pointer;
-  }
-
-  #myBtn5{
-      border-width: 0px;
-  }
-
-  #myBtn5:hover{
-      cursor: pointer;
-  }
-  #myBtn6{
+#myBtn {
     border-width: 0px;
 }
-  #myBtn6:hover{
+
+#myBtn:hover {
     cursor: pointer;
 }
-  .modal-content h1{
-      text-align: center;
-  }
 
-  
+
+#myBtn2 {
+    border-width: 0px;
+}
+
+#myBtn2:hover {
+    cursor: pointer;
+}
+
+
+#myBtn3 {
+    border-width: 0px;
+}
+
+#myBtn3:hover {
+    cursor: pointer;
+}
+
+#myBtn4 {
+    border-width: 0px;
+}
+
+#myBtn4:hover {
+    cursor: pointer;
+}
+
+#myBtn5 {
+    border-width: 0px;
+}
+
+#myBtn5:hover {
+    cursor: pointer;
+}
+
+#myBtn6 {
+    border-width: 0px;
+}
+
+#myBtn6:hover {
+    cursor: pointer;
+}
+
+.modal-content h1 {
+    text-align: center;
+}
+
+
+
+
+/* home */
+
+
+#home-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+#home-container h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+
+}
+
+#home-container p {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+
+.minifig-img {
+    display: block;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+/* Vraag ordenen /*
+
+#main-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+/* Form styles */
+#order-form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+#vraagInput {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 10px;
+}
+
+#submitVraag {
+    display: inline-block;
+    background-color: red;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Overzicht */
+
+
+#main-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+
+#skip-info,
+#ordered-info {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+#link {
+    color: black;
+    text-decoration: none;
+  }
 
 
 /* bekijk */
@@ -340,4 +442,3 @@ tr:nth-child(even) {
     text-decoration: underline;
     text-decoration-color: white;
 }
-

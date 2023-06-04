@@ -13,12 +13,14 @@
 
 <body>
   <main>
-    <% if( orderAmount === 0){ %>
-        <p>Je hebt <%= aantalSkips %> minifig(s) geskipt</p>
-        <p>Je hebt <%= geordendeFiguren %> minfig(s) geordend </p>
-      <% }; %>
-
-    <h2> <a href="/user/<%= id %>/vraagOrdenen">Klik hier om terug minifigs te ordenen</a></h2>
+    <div id="overzicht-main">
+      <% if( orderAmount === 0){ %>
+          <p id="skipped-info">Je hebt <%= aantalSkips %> minifig(s) geskipt</p>
+          <p id="orderd-info">Je hebt <%= geordendeFiguren %> minfig(s) geordend </p>
+        <% }; %>
+    <br>
+    <h2> <a id="link" href="/user/<%= id %>/vraagOrdenen">Klik hier om terug minifigs te ordenen</a></h2>
+  </div> 
    
 
     
