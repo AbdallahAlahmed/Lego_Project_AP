@@ -11,28 +11,28 @@
 
 <%- include ("partials/header.ejs") %>
 
+
 <body>
-  <main>
-    <article>
-      <p>
-        LEGO minifiguren (ook wel minifigs genoemd) zijn kleine, gearticuleerde poppetjes die worden gebruikt in
-        LEGO-sets. Ze zijn ongeveer 4 centimeter hoog en bestaan uit verschillende losse onderdelen die kunnen worden
-        gemonteerd en gedemonteerd.
+  <div id="home-container">
+    <h1>Welkom</h1>
+    <p>
+      LEGO minifiguren (ook wel minifigs genoemd) zijn kleine, gearticuleerde poppetjes die worden gebruikt in
+      LEGO-sets. Ze zijn ongeveer 4 centimeter hoog en bestaan uit verschillende losse onderdelen die kunnen worden
+      gemonteerd en gedemonteerd.
 
-        Minifiguren hebben een kenmerkend ontwerp met een hoofd, een lichaam, armen en benen. Ze hebben ook een gezicht
-        met gedrukte details, zoals ogen, neus en mond. Het hoofd van een minifiguur kan worden verwisseld om
-        verschillende gezichtsuitdrukkingen te creëren, waardoor ze een uniek karakter krijgen.
+      Minifiguren hebben een kenmerkend ontwerp met een hoofd, een lichaam, armen en benen. Ze hebben ook een gezicht
+      met gedrukte details, zoals ogen, neus en mond. Het hoofd van een minifiguur kan worden verwisseld om
+      verschillende gezichtsuitdrukkingen te creëren, waardoor ze een uniek karakter krijgen.
 
-        Minifiguren kunnen worden aangekleed met verschillende accessoires, zoals hoeden, helmen, haarstukken, wapens en
-        gereedschappen. Hierdoor kunnen ze worden aangepast en afgestemd op verschillende thema's en verhaallijnen. LEGO
-        heeft door de jaren heen een breed scala aan minifiguren uitgebracht, waaronder verschillende personages uit
-        films, stripboeken, videogames en originele LEGO-thema's.
-      </p>
-    </article>
-    <div>
-      <h2>Wil je zelf de wereld van minifigs ontdekken?</h2> <br>
-      <h2> <a href="/user/<%= id %>/vraagOrdenen">Klik dan hier om minifigs te koppelen met sets</a></h2>
-    </div>
+      Minifiguren kunnen worden aangekleed met verschillende accessoires, zoals hoeden, helmen, haarstukken, wapens en
+      gereedschappen. Hierdoor kunnen ze worden aangepast en afgestemd op verschillende thema's en verhaallijnen. LEGO
+      heeft door de jaren heen een breed scala aan minifiguren uitgebracht, waaronder verschillende personages uit
+      films, stripboeken, videogames en originele LEGO-thema's.
+    </p>
+    <img class="minifig-img" src="/assets/images/minifigs.jpg" alt="Minifig">
+    <p>Ontdek de wereld van minifigs of je nu fan bent van Superhelden, SCI-FI, Geschiedenis er is een Minifig voor iedereen!</p>
+    <h2> <a href="/user/<%= id %>/vraagOrdenen">Klik hier om zelf de wereld te ontdekken</a></h2>
+  </div>
 
     
  <%- include ("partials/footer.ejs") %>

@@ -16,9 +16,7 @@
         <thead>
           <tr>
             <th>Afbeelding</th>
-            <th>Code</th>
-            <th>Set Afbeelding</th>
-            <th>Set Code</th>
+            <th>Fig ID</th>
             <th>Reden</th>
             <th>Delete / Reden Aanpassen</th>
           </tr>
@@ -34,13 +32,7 @@
                 <td>
                   <%= user?.BlackListed?.[i].figId %>
                 </td>
-                <td>
-                  <img height="250" alt="minifig" src=<%=user?.BlackListed?.[i].setUrl %>
-                </td>
-                <td>
-                  <%= user?.BlackListed?.[i].setId %>
-                </td>
-
+                
                 <td>
                   <%= user?.BlackListed?.[i].reden %>
                 </td>
@@ -48,15 +40,15 @@
                 <td>
                   <form method="post" action="/user/<%= id %>/blacklist">
                     <input name="minifigNum" value="<%= user?.BlackListed?.[i].figId %>" hidden>
-                    <input name="delete" type="submit" value="delete">
+                    <input id="submitVraag" name="delete" type="submit" value="Delete">
                   </form> 
                   <br>
                   <form method="post" action="/user/<%= id %>/redenAanpassen">
                     <input name="minifigNum" value="<%= user?.BlackListed?.[i].figId %>" hidden>
                     <input name="reden" value="<%= user?.BlackListed?.[i].reden %>" hidden>
                     
-                    <input name="redenAanpassen" type="submit" value="Reden Aanpassen">
-                    <input name="nieuweReden" type="text" required >
+                    <input id="submitVraag"  name="redenAanpassen" type="submit" value="Reden Aanpassen">
+                    <input id="vraagInput" name="nieuweReden" type="text" required >
                   </form>
                 </td>
 

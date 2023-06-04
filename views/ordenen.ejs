@@ -38,9 +38,9 @@
                   <input name="setImg" value="<%=setData[i].set_img_url %>" hidden>
                   <input name="setNum" value="<%=setData[i].set_num %>" hidden>
                   <input name="minifigNum" value="<%=minifigData.set_num %>" hidden>
-                  <input name="minifigImg" value="<%=minifigData.set_img_url %>" hidden>
-                  <input type="submit">
-                  <%=setData[i].name %></button>
+                  <input name="minifigImg" value="<%=minifigData.set_img_url %>" hidden> <br>
+                  <input id="submitVraag" type="submit" value="Kies"> 
+                  
               </td>
             </form>
 
@@ -54,14 +54,14 @@
 
       <input name="minifigNum" value="<%=minifigData.set_num %>" hidden>
       <input name="minifigImg" value="<%=minifigData.set_img_url %>" hidden>
-      <input name="blacklist" type="submit">
-      <input name="reden" type="text" placeholder="Geef een reden" required>
+      <input id="submitVraag" name="blacklist" type="submit" value="Blacklisten"> 
+      <input id="vraagInput"  name="reden" type="text" placeholder="Geef een reden" required>
 
     </form>
 
     <form method="post" action="/user/<%= id %>/ordenen/<%= orderAmount %>">
       <input name="minifigNum" value="<%=minifigData.set_num %>" hidden>
       <input name="minifigImg" value="<%=minifigData.set_img_url %>" hidden>
-      <input name="skip" type="submit" value="skip">
+      <input id="submitVraag" name="skip" type="submit" value="Skip Fig">
     </form>
     <%- include ("partials/footer.ejs") %>

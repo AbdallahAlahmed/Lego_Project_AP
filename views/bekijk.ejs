@@ -44,7 +44,7 @@
                 <form method="post" action="/user/<%= id %>/bekijk">
                   <input name="minifigNum" value="<%= user?.ChosenSet?.[i].figId %>" hidden>
                   <input name="minifigImg" value="<%= user?.ChosenSet?.[i].setId %>" hidden>
-                  <input name="delete" type="submit" value="delete">
+                  <input id="submitVraag" name="delete" type="submit" value="Delete">
                 </form>
 
               </td>
